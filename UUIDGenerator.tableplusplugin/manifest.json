@@ -1,10 +1,10 @@
 {
-    "name": "UUID Generator",
-    "identifier": "com.tableplus.TablePlus.UUIDGenerator",
-    "version": "2.1",
-    "detail": "This plugin helps you generate UUID",
-    "author": "TablePlus",
-    "authorEmail": "nick@tableplus.com",
+    "name": "ULID / UUID Generator",
+    "identifier": "space.proximity.table-plus-uuid-generator",
+    "version": "1.0",
+    "detail": "Generate ULIDs and UUIDs",
+    "author": "Josh Hudnall",
+    "authorEmail": "jhudnall@beinproximity.com",
     "scripts": [
         {
             "location": "data",
@@ -14,14 +14,23 @@
             "location": "data",
             "type": "action",
             "script": "uuidGenerator.js",
-            "handler": "v1",
-            "name": "Generate UUID V1"
+            "handler": "genUlid",
+            "name": "Generate ULID"
         },
         {
             "location": "data",
-            "name": "Generate UUID With",
+            "name": "ULID / UUID",
             "type": "submenu",
             "children": [
+                {
+                    "type": "action",
+                    "script": "uuidGenerator.js",
+                    "handler": "genUlid",
+                    "name": "ULID"
+                },
+                {
+                    "type": "separator"
+                },
                 {
                     "type": "action",
                     "script": "uuidGenerator.js",
@@ -33,9 +42,6 @@
                     "script": "uuidGenerator.js",
                     "handler": "v4",
                     "name": "UUID V4"
-                },
-                {
-                    "type": "separator"
                 },
                 {
                     "type": "action",

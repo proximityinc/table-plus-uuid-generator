@@ -1,9 +1,10 @@
 {
-  "name": "com.tableplus.TablePlus.UUIDGenerator",
+  "name": "space.proximity.table-plus-uuid-generator",
   "version": "1.0.0",
-  "description": "This plugin helps you generate UUID",
+  "description": "Generate ULIDs and UUIDs",
   "main": "main.js",
   "dependencies": {
+    "ulid": "2.3.0",
     "uuid": "3.4.0",
     "webpack": "5.79.0"
   },
@@ -16,6 +17,6 @@
     "build": "webpack"
   },
   "keywords": [],
-  "author": "https://tableplus.com",
+  "author": "jhudnall@beinproximity.com",
   "license": "MIT"
 }

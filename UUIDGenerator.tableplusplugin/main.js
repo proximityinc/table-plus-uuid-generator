@@ -1,10 +1,13 @@
 import { getUUID } from './library/helper';
 
-var setContent = function(context, uuid) {
+import { detectPrng, monotonicFactory } from 'ulid'
+const ulid = monotonicFactory(() => Math.random())
+
+let setContent = function(context, uuid) {
     // Get all the items
-    var row = context.clickedRow();
-    var col = context.clickedColumn();
-    var item = context.currentItem();
+    let row = context.clickedRow();
+    let col = context.clickedColumn();
+    let item = context.currentItem();
 
     if (row == null || col == null || item == null) {
         context.alert('Error', 'No item cliked');
@@ -12,7 +15,7 @@ var setContent = function(context, uuid) {
     }
 
     if (uuid == null) {
-        context.alert('Error', 'Could not generate UUID');
+        context.alert('Error', 'Could not generate.');
         return;
     }
 
@@ -29,7 +32,16 @@ var setContent = function(context, uuid) {
     context.update();
 };
 
-var v1 = function (context) {
+let genUlid = function (context) {
+    try {
+        let str = ulid().toLowerCase();
+        setContent(context, str);
+    } catch (err) {
+        context.alert('Error', err);
+    }
+}
+
+let v1 = function (context) {
     try {
         let uuid = getUUID("1", true);
         setContent(context, uuid);
@@ -38,21 +50,22 @@ var v1 = function (context) {
     }
 }
 
-var v4 = function (context) {
+let v4 = function (context) {
     let uuid = getUUID("4", true);
     setContent(context, uuid);
 }
 
-var v1nohyphens = function (context) {
+let v1nohyphens = function (context) {
     let uuid = getUUID("1", false);
     setContent(context, uuid);
 }
 
-var v4nohyphens = function (context) {
+let v4nohyphens = function (context) {
     let uuid = getUUID("4", false);
     setContent(context, uuid);
 }
 
+global.genUlid = genUlid;
 global.v1 = v1;
 global.v4 = v4;
 global.v1nohyphens = v1nohyphens;
